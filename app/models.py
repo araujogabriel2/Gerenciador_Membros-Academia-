@@ -35,6 +35,17 @@ def listar_membros():
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM socios")
-    conn.close()
     dados = cursor.fetchall()
-    return dados
+    conn.close()
+
+    return [dict(linha) for linha in dados]
+
+def listar_membros_por_id(id_membro):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM socios WHERE id = ?"(id_membro,))
+    dado = cursor.fetchone()
+    conn.close()
+
+    return dict(dado) if dado else None
