@@ -49,3 +49,18 @@ def listar_membros_por_id(id_membro):
     conn.close()
 
     return dict(dado) if dado else None
+
+def atualizar_plano(socios, novo_plano, id_membro):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    cursor.execute("UPDATE socios set plano = ? WHERE id = ? ", (novo_plano, id_membro))
+    if cursor.rowcount == 0:
+        conn.close()
+        return {"erro": "Membro não encontrado!"}
+    conn.commit()
+    conn.close()
+
+    return {
+        "mensagem": f"Plano de {socios.nome} atualizado com sucesso!"
+    }
