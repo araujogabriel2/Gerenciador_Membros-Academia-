@@ -13,6 +13,8 @@ def criar_tabela():
                     ativo BOOLEAN NOT NULL DEFAULT 1
                 )
             """)
+    conn.commit()
+    conn.close()
     
 def registrar_membro(socios):
     conn = conectar()
