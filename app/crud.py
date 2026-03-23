@@ -1,5 +1,4 @@
 from database import conectar
-
 def criar_tabela():
     conn = conectar()
     cursor = conn.cursor()

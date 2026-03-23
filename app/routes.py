@@ -17,4 +17,16 @@ def cadastrar_socio(socio:models.Socio):
     return {
         "message": f'{socio.nome} cadastrado com sucesso!'
     }
+
+@router.get("/socios")
+def listar_socios():
+    socios = crud.listar_membros()
+    
+    if socios is None:
+        raise HTTPException(
+            status_code=500, 
+            detail="Não foi possível listar sócios."
+        )
+    
+    return socios
     
