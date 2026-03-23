@@ -29,4 +29,39 @@ def listar_socios():
         )
     
     return socios
+
+@router.get("/socios/{id_membro}")
+def buscar_id(id_membro:int):
+    membro = crud.listar_membros_por_id(id_membro)
+
+    if membro is False:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado."
+
+        )
+
+    if membro is None:
+        raise HTTPException(
+            status_code=500,
+            detail="Erro ao buscar membro."
+        )
     
+    return membro
+
+@router.put("/socios/{id_membro}")
+def atualizar_plano(novo_plano:str, id_membro:int):
+    membro_atualizado = crud.atualizar_plano(novo_plano, id_membro)
+
+    if membro_atualizado is False:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado!"
+        )
+    
+    if membro_atualizado is None:
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível atualizar o plano."
+        )
+    return membro_atualizado
