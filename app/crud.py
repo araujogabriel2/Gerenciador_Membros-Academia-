@@ -78,6 +78,21 @@ def atualizar_plano(novo_plano, id_membro):
     except Error as e:
         print(e)
         return None
+    
+def deletar_membro(id_membro):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("DELETE FROM socios WHERE id = ?", (id_membro, ))
+        if cursor.rowcount == 0:
+            conn.close()
+            return False
+        conn.commit()
+        conn.close()
+    except Error as e:
+        print(e)
+        return None
 
 
 
