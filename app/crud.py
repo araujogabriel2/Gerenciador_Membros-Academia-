@@ -1,4 +1,4 @@
-from database import conectar
+from app.database import conectar
 from sqlite3 import Error
 def criar_tabela():
     conn = conectar()
