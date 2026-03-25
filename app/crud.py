@@ -90,6 +90,7 @@ def deletar_membro(id_membro):
             return False
         conn.commit()
         conn.close()
+        return True
     except Error as e:
         print(e)
         return None

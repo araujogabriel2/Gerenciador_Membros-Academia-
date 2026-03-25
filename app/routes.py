@@ -64,4 +64,20 @@ def atualizar_plano(novo_plano:str, id_membro:int):
             status_code=500,
             detail="Não foi possível atualizar o plano."
         )
-    return membro_atualizado
+    return {"message": "Membro atualizado com sucesso!"}
+
+@router.delete("/socios/{id_membro}")
+def deletar_membro(id_membro:int):
+    resultado = crud.deletar_membro(id_membro)
+
+    if resultado is False:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado!"
+        )
+    if resultado is None:
+        raise HTTPException(
+            status_code=500,
+            detail="Não foi possível deletar membro!"
+        )
+    return {"message": "Membro deletado com sucesso!"}
