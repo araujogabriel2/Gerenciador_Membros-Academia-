@@ -47,11 +47,11 @@ def listar_membros():
         print(e)
         return None
 
-def listar_membros_por_id(id_membro):
+def listar_membros_por_id(id_membro:int):
     conn = conectar()
     cursor = conn.cursor()
     try:
-        cursor.execute("SELECT * FROM socios WHERE id = ?"(id_membro,))
+        cursor.execute("SELECT * FROM socios WHERE id = ?", (id_membro,))
         dado = cursor.fetchone()
         conn.close()
 
